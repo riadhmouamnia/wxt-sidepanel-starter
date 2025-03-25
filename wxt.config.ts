@@ -9,7 +9,6 @@ export default defineConfig({
     name: "WXT + React Side Panel Example",
     browser_action: {
       default_title: "Click to open side panel",
-      default_popup: "popup.html",
     },
   },
 });
