@@ -1,34 +1,31 @@
-import { useState } from 'react';
-import reactLogo from '@/assets/react.svg';
-import wxtLogo from '/wxt.svg';
-import './App.css';
+import { Button } from "@/components/ui/button";
+import { MessageType } from "../types";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const handleShowReviews = async () => {
+    await browser.runtime.sendMessage({
+      messageType: MessageType.SHOW_UI,
+    });
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://wxt.dev" target="_blank">
-          <img src={wxtLogo} className="logo" alt="WXT logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>WXT + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the WXT and React logos to learn more
+    <div className="h-full min-h-screen p-4 flex flex-col gap-4">
+      <h1 className="text-3xl font-bold">Amazon reviews</h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione,
+        suscipit! Voluptates laborum, eius esse voluptate nisi assumenda tempore
+        autem quaerat aspernatur! Sint magni aut nobis tempora alias eius vel
+        totam!
       </p>
-    </>
+      <div className="flex flex-col gap-4 nmt-10">
+        <Button className="cursor-pointer" onClick={handleShowReviews}>
+          Show reviews
+        </Button>
+        <Button disabled></Button>
+        <Button disabled></Button>
+        <Button disabled></Button>
+      </div>
+    </div>
   );
 }
 

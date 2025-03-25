@@ -1,0 +1,19 @@
+{
+  "reviews": [
+    {
+      "title": "Great Product!",
+      "comment": "I loved the quality and durability of this product. Highly recommended!",
+      "rating": 5
+    },
+    {
+      "title": "Not bad",
+      "comment": "The product is decent, but the delivery took too long.",
+      "rating": 3
+    },
+    {
+      "title": "Would not buy again",
+      "comment": "It broke within a week. Very disappointed.",
+      "rating": 1
+    }
+  ]
+}
