@@ -27,6 +27,22 @@ export default ExtMessage;
 
 export interface Review {
   title: string;
-  comment: string;
+  content: string;
   rating: number;
+  author: string;
+  date: string;
+}
+
+export interface DetailedProduct {
+  title: string;
+  price: string;
+  rating: string;
+  totalReviews: string;
+  images: string[];
+  description: string;
+  bulletPoints: string[];
+  specifications: { [key: string]: string };
+  availability: string;
+  offers: string[];
+  reviews: Review[];
 }

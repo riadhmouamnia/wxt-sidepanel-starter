@@ -1,9 +1,20 @@
 import { useEffect, useState } from "react";
 import ExtMessage, { MessageType } from "@/entrypoints/types";
-import reviewsData from "../../constants/reviews.json";
+import { scrapeAmazonProduct } from "@/lib/scraper/scrape-product-by-url";
+import { extractASIN, extractMarketplaceId } from "@/lib/utils";
+import { ProductDetails } from "@/components/product-details";
 
 export default function App() {
   const [showDialog, setShowDialog] = useState(false);
+  const [product, setProduct] = useState<any>(null);
+  const [asin, setAsin] = useState("");
+  const [marketplaceId, setMarketplaceId] = useState("");
+
+  const fetchProduct = useCallback(async () => {
+    const url = window.location.href;
+    const prod = await scrapeAmazonProduct(url);
+    setProduct(prod);
+  }, []);
 
   useEffect(() => {
     const handleMessage = async (
@@ -20,16 +31,25 @@ export default function App() {
     };
     browser.runtime.onMessage.addListener(handleMessage);
 
+    fetchProduct();
+
+    const asin = extractASIN();
+    const marketplaceId = extractMarketplaceId();
+    setMarketplaceId(marketplaceId || "");
+    setAsin(asin || "");
+
     return () => {
       browser.runtime.onMessage.removeListener(handleMessage);
     };
   }, []);
 
   return (
-    <ReviewInsightsModal
+    <ProductDetails
       isOpen={showDialog}
       onClose={() => setShowDialog(false)}
-      reviews={reviewsData.reviews}
+      product={product}
+      asin={asin}
+      marketplaceId={marketplaceId}
     />
   );
 }

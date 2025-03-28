@@ -6,7 +6,7 @@ export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   manifest: {
     permissions: ["sidePanel"],
-    name: "Amazon Reviews",
+    name: "Amazon Product Insights",
     browser_action: {
       default_title: "Click to open side panel",
     },
